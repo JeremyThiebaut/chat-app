@@ -5,11 +5,13 @@ import IconButton from "@mui/material/IconButton";
 import Divider from "@mui/material/Divider";
 import Avatar from "@mui/material/Avatar";
 import { useTheme } from "@mui/material/styles";
-import { ChatCircleDots, Gear, Phone, Users } from "phosphor-react";
+import { Gear } from "phosphor-react";
 import { styled } from "@mui/material/styles";
 import Logo from "../../assets/images/logo.ico";
 import { useState } from "react";
 import { Switch } from "@mui/material";
+import { Profil_Menu } from "../../data";
+import { randImg } from "@ngneat/falso";
 
 const AntSwitch = styled(Switch)(({ theme }) => ({
   width: 40,
@@ -55,21 +57,6 @@ const AntSwitch = styled(Switch)(({ theme }) => ({
   },
 }));
 
-const Profil_Icon = () => [
-  {
-    index: 0,
-    icon: <ChatCircleDots />,
-  },
-  {
-    index: 1,
-    icon: <Users />,
-  },
-  {
-    index: 2,
-    icon: <Phone />,
-  },
-];
-
 const DashboardLayout = () => {
   const theme = useTheme();
 
@@ -109,7 +96,7 @@ const DashboardLayout = () => {
               alignItems="center"
               spacing={3}
             >
-              {Profil_Icon().map((item) =>
+              {Profil_Menu.map((item) =>
                 item.index === selected ? (
                   <Box
                     sx={{
@@ -160,7 +147,7 @@ const DashboardLayout = () => {
           </Stack>
           <Stack p={2} spacing={4}>
             <AntSwitch defaultChecked />
-            <Avatar src={"https://avatars.dicebear.com/api/avataaars/1.svg"} />
+            <Avatar src={randImg()} />
           </Stack>
         </Stack>
       </Box>

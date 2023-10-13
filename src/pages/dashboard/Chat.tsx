@@ -133,7 +133,7 @@ const Chat = () => {
         boxShadow: "0px 0px 2px rgba(0, 0, 0, 0.25)",
       }}
     >
-      <Stack p={3} spacing={2} sx={{ height: "calc(100% - 48px)" }}>
+      <Stack p={3} spacing={2} sx={{ height: "calc(100vh - 48px)" }}>
         <Stack
           direction={"row"}
           alignItems={"center"}

@@ -12,6 +12,8 @@ import {
   Badge,
 } from "@mui/material";
 import { ArchiveBox, CircleDashed, MagnifyingGlass } from "phosphor-react";
+import { ChatList } from "../../data";
+import { randImg } from "@ngneat/falso";
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
@@ -22,8 +24,8 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
       position: "absolute",
       top: 0,
       left: 0,
-      width: "100%",
-      height: "100%",
+      width: "75%",
+      height: "75%",
       borderRadius: "50%",
       animation: "ripple 1.2s infinite ease-in-out",
       border: "1px solid currentColor",
@@ -42,30 +44,51 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
   },
 }));
 
-const ChatElement = () => {
+const ChatElement = (params: {
+  id: number;
+  name: string;
+  img: string;
+  msg: string;
+  time: string;
+  unread: number;
+  online: boolean;
+}) => {
   return (
     <Box
       sx={{
-        width: "100%",
-        height: 60,
+        width: "calc(100% - 32px)",
         borderRadius: 1,
         backgroundColor: "#fff",
       }}
-      // p={2}
+      p={2}
     >
       <Stack
-        direction={"row"}
+        direction="row"
         alignItems={"center"}
-        justifyContent={"space-between"}
+        justifyContent="space-between"
       >
-        <Stack direction={"row"} spacing={2}>
-          <StyledBadge
-            overlap="circular"
-            anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-            variant="dot"
-          >
-            <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-          </StyledBadge>
+        <Stack direction="row" spacing={2}>
+          {params.online ? (
+            <StyledBadge
+              overlap="circular"
+              anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+              variant="dot"
+            >
+              <Avatar alt="Remy Sharp" src={randImg()} />
+            </StyledBadge>
+          ) : (
+            <Avatar alt="Remy Sharp" src={randImg()} />
+          )}
+          <Stack spacing={0.3}>
+            <Typography variant="subtitle2">{params.name}</Typography>
+            <Typography variant="caption">{params.msg}</Typography>
+          </Stack>
+        </Stack>
+        <Stack spacing={2} alignItems={"center"}>
+          <Typography sx={{ fontWeight: 600 }} variant="caption">
+            {params.time}
+          </Typography>
+          <Badge color="primary" badgeContent={params.unread}></Badge>
         </Stack>
       </Stack>
     </Box>
@@ -105,13 +128,12 @@ const Chat = () => {
     <Box
       sx={{
         position: "relative",
-        height: "100%",
         width: 320,
         backgroundColor: "#F8FAFF",
         boxShadow: "0px 0px 2px rgba(0, 0, 0, 0.25)",
       }}
     >
-      <Stack p={3} spacing={2}>
+      <Stack p={3} spacing={2} sx={{ height: "calc(100% - 48px)" }}>
         <Stack
           direction={"row"}
           alignItems={"center"}
@@ -146,8 +168,27 @@ const Chat = () => {
           </Stack>
           <Divider />
         </Stack>
-        <Stack direction={"column"}>
-          <ChatElement />
+        <Stack
+          spacing={2}
+          direction={"column"}
+          sx={{ flexGrow: 1, overflow: "auto", height: "100%" }}
+        >
+          <Stack spacing={2.4}>
+            <Typography variant="subtitle2" sx={{ color: "#676767" }}>
+              Pinned
+            </Typography>
+            {ChatList.filter((item) => item.pinned).map((item) => {
+              return <ChatElement {...item} />;
+            })}
+          </Stack>
+          <Stack spacing={2.4}>
+            <Typography variant="subtitle2" sx={{ color: "#676767" }}>
+              All Chats
+            </Typography>
+            {ChatList.filter((item) => !item.pinned).map((item) => {
+              return <ChatElement {...item} />;
+            })}
+          </Stack>
         </Stack>
       </Stack>
     </Box>

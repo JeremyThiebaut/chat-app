@@ -177,16 +177,16 @@ const Chat = () => {
             <Typography variant="subtitle2" sx={{ color: "#676767" }}>
               Pinned
             </Typography>
-            {ChatList.filter((item) => item.pinned).map((item) => {
-              return <ChatElement {...item} />;
+            {ChatList.filter((item) => item.pinned).map((item, index) => {
+              return <ChatElement {...item} key={index} />;
             })}
           </Stack>
           <Stack spacing={2.4}>
             <Typography variant="subtitle2" sx={{ color: "#676767" }}>
               All Chats
             </Typography>
-            {ChatList.filter((item) => !item.pinned).map((item) => {
-              return <ChatElement {...item} />;
+            {ChatList.filter((item) => !item.pinned).map((item, index) => {
+              return <ChatElement {...item} key={index} />;
             })}
           </Stack>
         </Stack>

@@ -9,7 +9,7 @@ import { Gear } from "phosphor-react";
 import Logo from "../../assets/images/logo.ico";
 import { useState } from "react";
 import { Stack } from "@mui/material";
-import AntSwitch from "@/src/components/AntSwitch";
+import AntSwitch from "../../components/AntSwitch";
 
 const SideBar = () => {
   const theme = useTheme();
@@ -56,6 +56,7 @@ const SideBar = () => {
                     backgroundColor: theme.palette.primary.main,
                     borderRadius: 1.5,
                   }}
+                  key={item.index}
                 >
                   <IconButton
                     sx={{ width: "max-content", color: "#fff" }}

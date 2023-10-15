@@ -10,7 +10,7 @@ const GeneralApp = () => {
         sx={{
           height: "100%",
           width: "calc(100vw - 420px)",
-          backgroundColor: "#fff",
+          backgroundColor: "#f0f4fa",
         }}
       >
         <Conversation />

@@ -3,11 +3,15 @@ import {
   Divider,
   IconButton,
   Link,
+  Menu,
+  MenuItem,
   Stack,
   Typography,
   useTheme,
 } from "@mui/material";
-import { DownloadSimple, Image } from "phosphor-react";
+import { DotsThreeVertical, DownloadSimple, Image } from "phosphor-react";
+import { Message_options } from "../../data";
+import { useState } from "react";
 
 type MessageType = {
   text?: string;
@@ -66,6 +70,7 @@ const DocMsg = (props: TimelineProps) => {
           </Typography>
         </Stack>
       </Box>
+      <MessageOptions />
     </Stack>
   );
 };
@@ -122,6 +127,7 @@ const LinkMsg = (props: TimelineProps) => {
           </Stack>
         </Stack>
       </Box>
+      <MessageOptions />
     </Stack>
   );
 };
@@ -166,6 +172,7 @@ const ReplyMsg = (props: TimelineProps) => {
           </Typography>
         </Stack>
       </Box>
+      <MessageOptions />
     </Stack>
   );
 };
@@ -201,6 +208,7 @@ const MediaMsg = (props: TimelineProps) => {
           </Typography>
         </Stack>
       </Box>
+      <MessageOptions />
     </Stack>
   );
 };
@@ -229,6 +237,8 @@ const TextMsg = (props: TimelineProps) => {
           {props.item.message}
         </Typography>
       </Box>
+      {/*  */}
+      <MessageOptions />
     </Stack>
   );
 };
@@ -247,6 +257,52 @@ const Timeline = (props: TimelineProps) => {
       </Typography>
       <Divider sx={{ width: "46%" }} />
     </Stack>
+  );
+};
+
+const MessageOptions = () => {
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const open = Boolean(anchorEl);
+
+  const handleClick = (event: React.MouseEvent<SVGSVGElement>) => {
+    setAnchorEl(event.currentTarget as unknown as HTMLElement);
+  };
+
+  const handleClose = () => setAnchorEl(null);
+
+  return (
+    <>
+      <DotsThreeVertical
+        id="basic-button"
+        aria-controls={open ? "basic-menu" : undefined}
+        aria-haspopup="true"
+        aria-expanded={open ? "true" : undefined}
+        onClick={handleClick}
+        size={20}
+      />
+      <Menu
+        id="basic-menu"
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        MenuListProps={{
+          "aria-labelledby": "basic-button",
+        }}
+      >
+        <Stack spacing={1} px={1}>
+          {Message_options.map((item) => (
+            <MenuItem
+              onClick={() => {
+                handleClick;
+              }}
+              key={item.title}
+            >
+              {item.title}
+            </MenuItem>
+          ))}
+        </Stack>
+      </Menu>
+    </>
   );
 };
 

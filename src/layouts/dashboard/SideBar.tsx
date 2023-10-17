@@ -1,4 +1,4 @@
-import { Profil_Menu } from "../../data";
+import { Nav_Buttons, Profile_Menu } from "../../data";
 import { randImg } from "@ngneat/falso";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
@@ -8,12 +8,20 @@ import { useTheme } from "@mui/material/styles";
 import { Gear } from "phosphor-react";
 import Logo from "../../assets/images/logo.ico";
 import { useState } from "react";
-import { Stack } from "@mui/material";
+import { Menu, MenuItem, Stack } from "@mui/material";
 import AntSwitch from "../../components/AntSwitch";
 
 const SideBar = () => {
   const theme = useTheme();
-  const [selected, setSelected] = useState(0);
+  const [selected, setSelected] = useState<number>(0);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const open = Boolean(anchorEl);
+
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => setAnchorEl(null);
 
   return (
     <Box
@@ -49,7 +57,7 @@ const SideBar = () => {
             alignItems="center"
             spacing={3}
           >
-            {Profil_Menu.map((item) =>
+            {Nav_Buttons.map((item) =>
               item.index === selected ? (
                 <Box
                   sx={{
@@ -101,7 +109,41 @@ const SideBar = () => {
         </Stack>
         <Stack p={2} spacing={4}>
           <AntSwitch defaultChecked />
-          <Avatar src={randImg()} />
+          <Avatar
+            id="basic-button"
+            aria-controls={open ? "basic-menu" : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? "true" : undefined}
+            onClick={handleClick}
+            src={randImg()}
+          />
+          <Menu
+            id="basic-menu"
+            anchorEl={anchorEl}
+            open={open}
+            onClose={handleClose}
+            MenuListProps={{
+              "aria-labelledby": "basic-button",
+            }}
+            anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
+            transformOrigin={{ horizontal: "left", vertical: "bottom" }}
+          >
+            <Stack spacing={1} px={1}>
+              {Profile_Menu.map((item) => (
+                <MenuItem onClick={handleClick} key={item.title}>
+                  <Stack
+                    sx={{ width: 100 }}
+                    direction={"row"}
+                    alignItems={"center"}
+                    justifyContent={"space-between"}
+                  >
+                    <span>{item.title}</span>
+                    {item.icon}
+                  </Stack>
+                </MenuItem>
+              ))}
+            </Stack>
+          </Menu>
         </Stack>
       </Stack>
     </Box>

@@ -65,6 +65,7 @@ const Actions = [
 ];
 
 const ChatInput: React.FC = ({ setOpenPicker }) => {
+  const [openActions, setOpenActions] = useState<boolean>(false);
   return (
     <StyledInput
       fullWidth
@@ -74,7 +75,12 @@ const ChatInput: React.FC = ({ setOpenPicker }) => {
         disableUnderline: true,
         startAdornment: (
           <Stack sx={{ width: "max-content" }}>
-            <Stack sx={{ porision: "relative" }}>
+            <Stack
+              sx={{
+                porision: "relative",
+                display: openActions ? "inline-block" : "none",
+              }}
+            >
               {Actions.map((action, index) => (
                 <Tooltip placement="right" title={action.title} key={index}>
                   <Fab
@@ -92,7 +98,7 @@ const ChatInput: React.FC = ({ setOpenPicker }) => {
               ))}
             </Stack>
             <InputAdornment position="start">
-              <IconButton>
+              <IconButton onClick={() => setOpenActions((prev) => !prev)}>
                 <LinkSimple />
               </IconButton>
             </InputAdornment>

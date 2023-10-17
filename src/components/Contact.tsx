@@ -8,7 +8,16 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
-import { Bell, CaretRight, Phone, Star, VideoCamera, X } from "phosphor-react";
+import {
+  Bell,
+  CaretRight,
+  Phone,
+  Prohibit,
+  Star,
+  Trash,
+  VideoCamera,
+  X,
+} from "phosphor-react";
 import { useDispatch } from "../redux/store";
 import { ToggleSidebar } from "../redux/slices/app";
 import { randFirstName, randFullName, randImg } from "@ngneat/falso";
@@ -157,6 +166,14 @@ const Contact = () => {
                 Owl, Parrot, Rabbit, You
               </Typography>
             </Stack>
+          </Stack>
+          <Stack direction={"row"} alignItems="center" spacing={2}>
+            <Button startIcon={<Prohibit />} fullWidth variant="outlined">
+              Block
+            </Button>
+            <Button startIcon={<Trash />} fullWidth variant="outlined">
+              Delete
+            </Button>
           </Stack>
         </Stack>
       </Stack>

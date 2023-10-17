@@ -1,7 +1,29 @@
-import { ChatCircleDots, Phone, Users } from "phosphor-react";
+import {
+  ChatCircleDots,
+  Gear,
+  Phone,
+  SignOut,
+  User,
+  Users,
+} from "phosphor-react";
 import { randFirstName, randImg, randText } from "@ngneat/falso";
 
-const Profil_Menu = [
+const Profile_Menu = [
+  {
+    title: "Profile",
+    icon: <User />,
+  },
+  {
+    title: "Settings",
+    icon: <Gear />,
+  },
+  {
+    title: "Logout",
+    icon: <SignOut />,
+  },
+];
+
+const Nav_Buttons = [
   {
     index: 0,
     icon: <ChatCircleDots />,
@@ -169,4 +191,25 @@ const Chat_History = [
   },
 ];
 
-export { Profil_Menu, ChatList, Chat_History };
+const Message_options = [
+  {
+    title: "Reply",
+  },
+  {
+    title: "React to message",
+  },
+  {
+    title: "Forward message",
+  },
+  {
+    title: "Star message",
+  },
+  {
+    title: "Report",
+  },
+  {
+    title: "Delete Message",
+  },
+];
+
+export { Profile_Menu, ChatList, Chat_History, Message_options, Nav_Buttons };

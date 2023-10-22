@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
 import storage from "redux-persist/lib/storage";
-import appReducer from "./slices/app";
+import appReducer from "@/redux/slices/app";
 
 const rootPersistConfig = {
   key: "root",

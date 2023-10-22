@@ -1,7 +1,7 @@
 import { Box, Stack } from "@mui/material";
-import Header from "./Header";
-import Footer from "./Footer";
-import Message from "./Message";
+import Header from "@/components/Conversation/Header";
+import Footer from "@/components/Conversation/Footer";
+import Message from "@/components/Conversation/Message";
 
 const Conversation = () => {
   return (
@@ -12,7 +12,7 @@ const Conversation = () => {
         height={"100%"}
         sx={{ flewGrow: 1, height: "100%", overflow: "auto" }}
       >
-        <Message />
+        <Message menu={true} />
       </Box>
       <Footer />
     </Stack>

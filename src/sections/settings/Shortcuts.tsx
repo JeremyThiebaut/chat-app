@@ -11,6 +11,7 @@ import {
   Typography,
 } from "@mui/material";
 import { TransitionProps } from "@mui/material/transitions";
+import { useTranslation } from "react-i18next";
 
 type ShortcutsProps = {
   open: boolean;
@@ -28,76 +29,77 @@ const Transition = React.forwardRef(function Transition(
 
 const list = [
   {
-    title: "Mark as unread",
+    title: "mark_as_unread",
     combination: ["Cmd", "Shift", "U"],
   },
   {
-    title: "Mute",
+    title: "mute",
     combination: ["Cmd", "Shift", "M"],
   },
   {
-    title: "Archive Chat",
+    title: "archive_chat",
     combination: ["Cmd", "Shift", "E"],
   },
   {
-    title: "Delete Chat",
+    title: "delete_chat",
     combination: ["Cmd", "Shift", "D"],
   },
   {
-    title: "Pin Chat",
+    title: "pin_chat",
     combination: ["Cmd", "Shift", "P"],
   },
   {
-    title: "Search",
+    title: "search",
     combination: ["Cmd", "F"],
   },
   {
-    title: "Search Chat",
+    title: "search_chat",
     combination: ["Cmd", "Shift", "F"],
   },
   {
-    title: "Next Chat",
+    title: "next_chat",
     combination: ["Cmd", "N"],
   },
   {
-    title: "Next Step",
+    title: "next_step",
     combination: ["Ctrl", "Tab"],
   },
   {
-    title: "Previous Step",
+    title: "previous_step",
     combination: ["Ctrl", "Shift", "Tab"],
   },
   {
-    title: "New Group",
+    title: "new_group",
     combination: ["Cmd", "Shift", "N"],
   },
   {
-    title: "Profil & About",
+    title: "profile_&_about",
     combination: ["Cmd", "P"],
   },
   {
-    title: "Increase speed of voice message",
+    title: "increase_speed_of_voice_message",
     combination: ["Shift", "."],
   },
   {
-    title: "Decrease speed of voice message",
+    title: "decrease_speed_of_voice_message",
     combination: ["Shift", ","],
   },
   {
-    title: "Settings",
+    title: "settings",
     combination: ["Shift", "S"],
   },
   {
-    title: "Emoji Panel",
+    title: "emoji_panel",
     combination: ["Cmd", "E"],
   },
   {
-    title: "Sticker Panel",
+    title: "sticker_panel",
     combination: ["Cmd", "S"],
   },
 ];
 
 const Shortcuts = ({ open, handleClose }: ShortcutsProps) => {
+  const { t } = useTranslation();
   return (
     <>
       <Dialog
@@ -109,7 +111,7 @@ const Shortcuts = ({ open, handleClose }: ShortcutsProps) => {
         keepMounted
         TransitionComponent={Transition}
       >
-        <DialogTitle>Keyboard Shortcuts</DialogTitle>
+        <DialogTitle>{t("shortcuts")}</DialogTitle>
         <DialogContent sx={{ mt: 4 }}>
           <Grid container spacing={3}>
             {list.map(({ title, combination }, index) => (
@@ -121,7 +123,7 @@ const Shortcuts = ({ open, handleClose }: ShortcutsProps) => {
                   direction={"row"}
                 >
                   <Typography variant="caption" sx={{ fontSize: 14 }}>
-                    {title}
+                    {t(`shortcuts_list.${title}`)}
                   </Typography>
                   <Stack spacing={2} direction={"row"}>
                     {combination.map((item, index) => {

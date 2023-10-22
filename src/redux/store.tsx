@@ -4,7 +4,7 @@ import {
   useSelector as useAppSelector,
 } from "react-redux";
 import { persistStore, persistReducer } from "redux-persist";
-import { rootPersistConfig, rootReducer } from "./rootReducer";
+import { rootPersistConfig, rootReducer } from "@/redux/rootReducer";
 
 const store = configureStore({
   reducer: persistReducer(rootPersistConfig, rootReducer),

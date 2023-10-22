@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import Stack from "@mui/material/Stack";
-import SideBar from "./SideBar";
+import SideBar from "@/layouts/dashboard/SideBar";
 
 const DashboardLayout = () => {
   return (

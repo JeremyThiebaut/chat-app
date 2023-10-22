@@ -17,14 +17,14 @@ const Login = () => {
       >
         <Typography variant="h4">{t("login_title")}</Typography>
         <Stack direction="row" spacing={0.5}>
-          <Typography variant="body2">New User ?</Typography>
+          <Typography variant="body2">{t("new_user")}</Typography>
           <Link
             to="/auth/register"
             underline="none"
             component={RouterLink}
             variant="subtitle2"
           >
-            Created an account
+            {t("create_account")}
           </Link>
         </Stack>
         {/* Login Form */}

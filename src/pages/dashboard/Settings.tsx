@@ -21,9 +21,11 @@ import {
   Note,
   PencilCircle,
 } from "phosphor-react";
+import { useTranslation } from "react-i18next";
 
 const Settings = () => {
   const theme = useTheme();
+  const { t } = useTranslation();
 
   const [openShortcuts, setOpenShortcuts] = React.useState(false);
 
@@ -38,44 +40,44 @@ const Settings = () => {
   const list = [
     {
       icon: <Bell size={20} />,
-      title: "Notifications",
+      title: "notifications",
       onClick: () => {},
     },
     {
       icon: <Lock size={20} />,
-      title: "Privacy",
+      title: "privacy",
       onClick: () => {},
     },
     {
       icon: <Key size={20} />,
-      title: "Security",
+      title: "security",
       onClick: () => {},
     },
     {
       icon: <PencilCircle size={20} />,
-      title: "Theme",
+      title: "theme",
       onClick: () => {},
       // onClick: handleOpenTheme,
     },
     {
       icon: <Image size={20} />,
-      title: "Chat Wellpaper",
+      title: "chat_wallpaper",
       onClick: () => {},
     },
     {
       icon: <Note size={20} />,
-      title: "Request Acount Info",
+      title: "request_account_info",
       onClick: () => {},
     },
     {
       icon: <Keyboard size={20} />,
-      title: "Keyboard Shortcuts",
+      title: "keyboard_shortcuts",
       // onClick: () => {},
       onClick: handleOpenShortcuts,
     },
     {
       icon: <Info size={20} />,
-      title: "Help",
+      title: "help",
       onClick: () => {},
     },
   ];
@@ -102,7 +104,7 @@ const Settings = () => {
               <IconButton>
                 <CaretLeft size={24} color={"#4b4b4b"} />
               </IconButton>
-              <Typography variant="h6">Settings</Typography>
+              <Typography variant="h6">{t("settings")}</Typography>
             </Stack>
             {/* Profile */}
             <Stack direction={"row"} alignItems={"center"} spacing={3}>
@@ -127,7 +129,9 @@ const Settings = () => {
                 >
                   <Stack direction={"row"} alignItems={"center"} spacing={3}>
                     {icon}
-                    <Typography variant="body2">{title}</Typography>
+                    <Typography variant="body2">
+                      {t(`dashboard_list.${title}`)}
+                    </Typography>
                   </Stack>
                   {index !== list.length - 1 && <Divider />}
                 </Stack>

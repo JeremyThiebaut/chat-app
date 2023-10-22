@@ -14,8 +14,10 @@ import {
   StyledInputBase,
 } from "@/components/Search";
 import ChatElement from "@/components/ChatElement";
+import { useTranslation } from "react-i18next";
 
 const Chat = () => {
+  const { t } = useTranslation();
   return (
     <Box
       sx={{
@@ -42,8 +44,8 @@ const Chat = () => {
               <MagnifyingGlass color="#709CE6" />
             </SearchIconWrapper>
             <StyledInputBase
-              placeholder="Search..."
-              inputProps={{ "aria-label": "search" }}
+              placeholder={t("searching")}
+              inputProps={{ "aria-label": t("search") }}
             />
           </Search>
         </Stack>
@@ -67,7 +69,7 @@ const Chat = () => {
         >
           <Stack spacing={2.4}>
             <Typography variant="subtitle2" sx={{ color: "#676767" }}>
-              Pinned
+              {t("pinned")}
             </Typography>
             {ChatList.filter((item) => item.pinned).map((item, index) => {
               return <ChatElement {...item} key={index} />;
@@ -75,7 +77,7 @@ const Chat = () => {
           </Stack>
           <Stack spacing={2.4}>
             <Typography variant="subtitle2" sx={{ color: "#676767" }}>
-              All Chats
+              {t("all_chats")}
             </Typography>
             {ChatList.filter((item) => !item.pinned).map((item, index) => {
               return <ChatElement {...item} key={index} />;

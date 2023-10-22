@@ -2,16 +2,18 @@ import NewPasswordForm from "@/sections/settings/auth/NewPasswordForm";
 import { Link, Stack, Typography } from "@mui/material";
 import { CaretLeft } from "phosphor-react";
 import { Link as RouterLink } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const NewPassword = () => {
+  const { t } = useTranslation();
   return (
     <>
       <Stack spacing={2} sx={{ mb: 5, position: "relative" }}>
         <Typography paragraph variant="h3">
-          Reset Password
+          {t("reset_password")}
         </Typography>
         <Typography sx={{ color: "text.secondary", mb: 5 }}>
-          Please set your new password.
+          {t("new_password_description")}
         </Typography>
       </Stack>
       {/* NewPasswordForm */}
@@ -25,7 +27,7 @@ const NewPassword = () => {
         sx={{ mt: 3, mx: "auto", alignItems: "center", display: "inline-flex" }}
       >
         <CaretLeft />
-        Back to login
+        {t("back_to_login")}
       </Link>
     </>
   );

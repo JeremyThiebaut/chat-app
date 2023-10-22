@@ -10,9 +10,11 @@ import Logo from "@/assets/images/logo.ico";
 import { useState } from "react";
 import { Menu, MenuItem, Stack } from "@mui/material";
 import AntSwitch from "@/components/AntSwitch";
+import { useTranslation } from "react-i18next";
 
 const SideBar = () => {
   const theme = useTheme();
+  const { t } = useTranslation();
   const [selected, setSelected] = useState<number>(0);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -135,12 +137,12 @@ const SideBar = () => {
                   key={item.title}
                 >
                   <Stack
-                    sx={{ width: 100 }}
+                    sx={{ width: 130 }}
                     direction={"row"}
                     alignItems={"center"}
                     justifyContent={"space-between"}
                   >
-                    <span>{item.title}</span>
+                    <span>{t(`profile_menu.${item.title}`)}</span>
                     {item.icon}
                   </Stack>
                 </MenuItem>

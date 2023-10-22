@@ -21,8 +21,8 @@ const LoginForm = () => {
   const [showPassword, setShowPassword] = React.useState(false);
 
   const LoginSchema = Yup.object().shape({
-    email: Yup.string().email(t("valid_email")).required("Email is required"),
-    password: Yup.string().required("Password is required"),
+    email: Yup.string().email(t("valid_email")).required(t("required_email")),
+    password: Yup.string().required(t("required_password")),
   });
 
   const defaultValues = {
@@ -68,10 +68,10 @@ const LoginForm = () => {
         {!!errors.afterSubmit && (
           <Alert severity="error">{errors.afterSubmit.message}</Alert>
         )}
-        <RHFTextField name="email" label="Email Address" />
+        <RHFTextField name="email" label={t("email")} />
         <RHFTextField
           name="password"
-          label="Password"
+          label={t("password")}
           type={showPassword ? "text" : "password"}
           InputProps={{
             endAdornment: (
@@ -92,7 +92,7 @@ const LoginForm = () => {
           component={RouterLink}
           to="/auth/reset-password"
         >
-          Forgot Password?
+          {t("forgot_password")}
         </Link>
       </Stack>
       <Button
@@ -112,7 +112,7 @@ const LoginForm = () => {
           },
         }}
       >
-        Login
+        {t("login")}
       </Button>
     </FormProvider>
   );

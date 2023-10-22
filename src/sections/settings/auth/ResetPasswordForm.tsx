@@ -10,7 +10,7 @@ const ResetPasswordForm = () => {
   const { t } = useTranslation();
 
   const ResetPasswordSchema = Yup.object().shape({
-    email: Yup.string().email(t("valid_email")).required("Email is required"),
+    email: Yup.string().email(t("valid_email")).required(t("required_email")),
   });
 
   const defaultValues = {
@@ -54,7 +54,7 @@ const ResetPasswordForm = () => {
         {!!errors.afterSubmit && (
           <Alert severity="error">{errors.afterSubmit.message}</Alert>
         )}
-        <RHFTextField name="email" label="Email Address" />
+        <RHFTextField name="email" label={t("email")} />
 
         <Button
           fullWidth
@@ -73,7 +73,8 @@ const ResetPasswordForm = () => {
             },
           }}
         >
-          Send Request
+          {/* Send Request */}
+          {t("send_request")}
         </Button>
       </Stack>
     </FormProvider>

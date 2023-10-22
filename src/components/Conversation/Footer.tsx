@@ -22,6 +22,7 @@ import {
 import data from "@emoji-mart/data";
 import Picker from "@emoji-mart/react";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const StyledInput = styled(TextField)(() => ({
   "& .MuiInputBase-input": {
@@ -65,11 +66,12 @@ const Actions = [
 ];
 
 const ChatInput: React.FC = ({ setOpenPicker }) => {
+  const { t } = useTranslation();
   const [openActions, setOpenActions] = useState<boolean>(false);
   return (
     <StyledInput
       fullWidth
-      placeholder={"Write a message..."}
+      placeholder={t("write_message")}
       variant="filled"
       InputProps={{
         disableUnderline: true,

@@ -15,10 +15,12 @@ import { UpdateSidebarType } from "@/redux/slices/app";
 import { randFullName, randImg } from "@ngneat/falso";
 import { SHARED_DOCS, SHARED_LINKS } from "@/data";
 import { DocMsg, LinkMsg } from "@/components/Conversation/MsgTypes";
+import { useTranslation } from "react-i18next";
 
 const SharedMessages = () => {
   const theme = useTheme();
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   const [value, setValue] = React.useState(0);
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -54,7 +56,7 @@ const SharedMessages = () => {
             >
               <CaretLeft />
             </IconButton>
-            <Typography variant="subtitle2">Shared Messages</Typography>
+            <Typography variant="subtitle2">{t("shared_messages")}</Typography>
           </Stack>
         </Box>
         <Tabs
@@ -63,9 +65,9 @@ const SharedMessages = () => {
           onChange={handleChange}
           centered
         >
-          <Tab label="Media" />
-          <Tab label="Links" />
-          <Tab label="Docs" />
+          <Tab label={t("media")} />
+          <Tab label={t("links")} />
+          <Tab label={t("docs")} />
         </Tabs>
         {/* Body */}
         <Stack

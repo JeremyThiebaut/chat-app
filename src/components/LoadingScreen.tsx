@@ -1,5 +1,9 @@
+import { useTranslation } from "react-i18next";
+
 const LoadingScreen = () => {
-  return <>Loading...</>;
+  const { t } = useTranslation();
+
+  return <>{t("loading")}</>;
 };
 
 export default LoadingScreen;

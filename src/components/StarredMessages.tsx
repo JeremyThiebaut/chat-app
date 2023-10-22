@@ -3,10 +3,12 @@ import { CaretLeft } from "phosphor-react";
 import { useDispatch } from "react-redux";
 import { UpdateSidebarType } from "@/redux/slices/app";
 import Message from "@/components/Conversation/Message";
+import { useTranslation } from "react-i18next";
 
 const StarredMessages = () => {
   const theme = useTheme();
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   return (
     <Box sx={{ width: 320, height: "100vh" }}>
@@ -37,7 +39,7 @@ const StarredMessages = () => {
             >
               <CaretLeft />
             </IconButton>
-            <Typography variant="subtitle2">Starred Messages</Typography>
+            <Typography variant="subtitle2">{t("starred_messages")}</Typography>
           </Stack>
         </Box>
 

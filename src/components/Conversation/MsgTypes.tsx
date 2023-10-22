@@ -12,6 +12,7 @@ import {
 import { DotsThreeVertical, DownloadSimple, Image } from "phosphor-react";
 import { Message_options } from "@/data";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 type MessageType = {
   text?: string;
@@ -249,6 +250,7 @@ const Timeline = ({ item }: TimelineProps) => {
 const MessageOptions = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
+  const { t } = useTranslation();
 
   const handleClick = (event: React.MouseEvent<SVGSVGElement>) => {
     setAnchorEl(event.currentTarget as unknown as HTMLElement);
@@ -283,7 +285,7 @@ const MessageOptions = () => {
               }}
               key={item.title}
             >
-              {item.title}
+              {t(`message_options.${item.title}`)}
             </MenuItem>
           ))}
         </Stack>

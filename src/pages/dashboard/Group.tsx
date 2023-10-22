@@ -15,9 +15,11 @@ import {
   useTheme,
 } from "@mui/material";
 import { MagnifyingGlass, Plus } from "phosphor-react";
+import { useTranslation } from "react-i18next";
 
 const Group = () => {
   const theme = useTheme();
+  const { t } = useTranslation();
   return (
     <>
       <Stack direction={"row"} sx={{ width: "100%" }}>
@@ -35,7 +37,7 @@ const Group = () => {
         >
           <Stack p={3} spacing={2} sx={{ maxHeight: "100vh" }}>
             <Stack>
-              <Typography variant={"h5"}>Groups</Typography>
+              <Typography variant={"h5"}>{t("group")}</Typography>
             </Stack>
             <Stack sx={{ width: "100%" }}>
               <Search>
@@ -43,8 +45,9 @@ const Group = () => {
                   <MagnifyingGlass color="#709CE6" />
                 </SearchIconWrapper>
                 <StyledInputBase
-                  placeholder="Search..."
-                  inputProps={{ "aria-label": "search" }}
+                  // placeholder="Search..."
+                  placeholder={t("searching")}
+                  inputProps={{ "aria-label": t("search") }}
                 />
               </Search>
             </Stack>
@@ -54,7 +57,7 @@ const Group = () => {
               alignContent={"center"}
             >
               <Typography variant={"subtitle2"} component={Link}>
-                Create New Group
+                {t("create_new_group")}
               </Typography>
               <IconButton>
                 <Plus style={{ color: theme.palette.primary.main }} />
@@ -66,14 +69,14 @@ const Group = () => {
               spacing={3}
             >
               <Typography variant={"subtitle2"} sx={{ color: "#676667" }}>
-                Pinned
+                {t("pinned")}
               </Typography>
               {/* Chat List */}
               {ChatList.filter((item) => item.pinned).map((item, index) => {
                 return <ChatElement {...item} key={index} />;
               })}
               <Typography variant={"subtitle2"} sx={{ color: "#676667" }}>
-                All Groups
+                {t("all_groups")}
               </Typography>
 
               {ChatList.filter((item) => !item.pinned).map((item, index) => {

@@ -2,8 +2,10 @@ import AuthSocial from "@/sections/settings/auth/AuthSocial";
 import RegisterForm from "@/sections/settings/auth/RegisterForm";
 import { Link, Stack, Typography } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const Register = () => {
+  const { t } = useTranslation();
   return (
     <>
       <Stack
@@ -13,16 +15,16 @@ const Register = () => {
           position: "relative",
         }}
       >
-        <Typography variant="h4">Get Started with Talk</Typography>
+        <Typography variant="h4">{t("get_started_with_talk")}</Typography>
         <Stack direction={"row"} spacing={0.5}>
-          <Typography variant="body2">Already have an account?</Typography>
+          <Typography variant="body2">{t("already_account")}</Typography>
           <Link
             to="/auth/login"
             underline="none"
             component={RouterLink}
             variant="subtitle2"
           >
-            Sign in
+            {t("sign_in")}
           </Link>
         </Stack>
         {/* Register Form */}
@@ -38,11 +40,11 @@ const Register = () => {
         >
           {"By signing up, I agree to "}
           <Link underline="always" color="text.primary">
-            Terms of Service
+            {t("terms_of_service")}
           </Link>
           {" and "}
           <Link underline="always" color="text.primary">
-            Privacy Policy
+            {t("privacy_policy")}
           </Link>
         </Typography>
         <AuthSocial />

@@ -12,28 +12,28 @@ import {
 } from "@mui/material";
 import { RHFTextField } from "@/components/hook-form";
 import { Eye, EyeSlash } from "phosphor-react";
+import { useTranslation } from "react-i18next";
 
 const RegisterForm = () => {
   const [showPassword, setShowPassword] = React.useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = React.useState(false);
+  const { t } = useTranslation();
 
   const RegisterSchema = Yup.object().shape({
-    firstName: Yup.string().required("First name is required"),
-    lastName: Yup.string().required("Last name is required"),
-    email: Yup.string()
-      .email("Email must be a valid email address.")
-      .required("Email is required"),
+    firstName: Yup.string().required(t("first_name_required")),
+    lastName: Yup.string().required(t("last_name_required")),
+    email: Yup.string().email(t("valid_email")).required(t("required_email")),
     password: Yup.string()
-      .required("Password is required")
-      .min(8)
-      .max(50)
+      .required(t("required_password"))
+      .min(8, t("password_min"))
+      .max(50, t("password_max"))
       .matches(
         /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,}$/,
-        "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
+        t("password_strength")
       ),
     confirmPassword: Yup.string()
-      .oneOf([Yup.ref("password")], "Passwords must match")
-      .required("Confirm password is required"),
+      .oneOf([Yup.ref("password")], t("password_match"))
+      .required(t("required_confirm_password")),
   });
 
   const defaultValues = {
@@ -85,13 +85,13 @@ const RegisterForm = () => {
           <Alert severity="error">{errors.afterSubmit.message}</Alert>
         )}
         <Stack direction={{ sx: "column", sm: "row" }} spacing={2}>
-          <RHFTextField name="firstName" label="First name" />
-          <RHFTextField name="lastName" label="Last name" />
+          <RHFTextField name="firstName" label={t("first_name")} />
+          <RHFTextField name="lastName" label={t("last_name")} />
         </Stack>
         <RHFTextField name="email" label="Email Address" />
         <RHFTextField
           name="password"
-          label="Password"
+          label={t("password")}
           type={showPassword ? "text" : "password"}
           InputProps={{
             endAdornment: (
@@ -105,7 +105,7 @@ const RegisterForm = () => {
         />
         <RHFTextField
           name="confirmPassword"
-          label="Confirm Password"
+          label={t("confirm_password")}
           type={showConfirmPassword ? "text" : "password"}
           InputProps={{
             endAdornment: (
@@ -136,7 +136,7 @@ const RegisterForm = () => {
             },
           }}
         >
-          Create Account
+          {t("create_account")}
         </Button>
       </Stack>
     </FormProvider>

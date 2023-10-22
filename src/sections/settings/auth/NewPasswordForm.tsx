@@ -2,14 +2,12 @@ import * as React from "react";
 import * as Yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Link as RouterLink } from "react-router-dom";
 import FormProvider from "@/components/hook-form/FormProvider";
 import {
   Alert,
   Button,
   IconButton,
   InputAdornment,
-  Link,
   Stack,
 } from "@mui/material";
 import { RHFTextField } from "@/components/hook-form";
@@ -22,11 +20,12 @@ const NewPasswordForm = () => {
 
   const NewPasswordSchema = Yup.object().shape({
     newPassword: Yup.string()
-      .min(6, "Password must be at least 6 characters")
-      .required("Password is required"),
+      .min(6, t("password_min"))
+      .max(50, t("password_max"))
+      .required(t("required_password")),
     confirmPassword: Yup.string()
-      .required("Password is required")
-      .oneOf([Yup.ref("newPassword")], "Passwords must match"),
+      .required(t("required_confirm_password"))
+      .oneOf([Yup.ref("newPassword")], t("password_match")),
   });
 
   const defaultValues = {
@@ -75,7 +74,7 @@ const NewPasswordForm = () => {
 
         <RHFTextField
           name="newPassword"
-          label="New Password"
+          label={t("new_password")}
           type={showPassword ? "text" : "password"}
           InputProps={{
             endAdornment: (
@@ -89,7 +88,7 @@ const NewPasswordForm = () => {
         />
         <RHFTextField
           name="confirmPassword"
-          label="Confirm Password"
+          label={t("confirm_password")}
           type={showPassword ? "text" : "password"}
           InputProps={{
             endAdornment: (
@@ -118,7 +117,7 @@ const NewPasswordForm = () => {
             },
           }}
         >
-          Submit
+          {t("submit")}
         </Button>
       </Stack>
     </FormProvider>

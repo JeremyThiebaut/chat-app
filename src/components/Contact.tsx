@@ -30,6 +30,7 @@ import { ToggleSidebar, UpdateSidebarType } from "@/redux/slices/app";
 import { randFirstName, randFullName, randImg } from "@ngneat/falso";
 import AntSwitch from "@/components/AntSwitch";
 import { TransitionProps } from "@mui/material/transitions";
+import { useTranslation } from "react-i18next";
 
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
@@ -41,6 +42,7 @@ const Transition = React.forwardRef(function Transition(
 });
 
 const BlockDialog = ({ open, handleClose }) => {
+  const { t } = useTranslation();
   return (
     <div>
       <Dialog
@@ -50,15 +52,15 @@ const BlockDialog = ({ open, handleClose }) => {
         onClose={handleClose}
         aria-describedby="alert-dialog-slide-description"
       >
-        <DialogTitle>Block this contact</DialogTitle>
+        <DialogTitle>{t("block_contact")}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-slide-description">
-            Are you sure you want to block this Contact ?
+            {t("question_block_contact")}
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose}>Yes</Button>
+          <Button onClick={handleClose}>{t("cancel")}</Button>
+          <Button onClick={handleClose}>{t("yes")}</Button>
         </DialogActions>
       </Dialog>
     </div>
@@ -66,6 +68,7 @@ const BlockDialog = ({ open, handleClose }) => {
 };
 
 const DeleteDialog = ({ open, handleClose }) => {
+  const { t } = useTranslation();
   return (
     <div>
       <Dialog
@@ -75,15 +78,15 @@ const DeleteDialog = ({ open, handleClose }) => {
         onClose={handleClose}
         aria-describedby="alert-dialog-slide-description"
       >
-        <DialogTitle>Delete this chat</DialogTitle>
+        <DialogTitle>{t("delete_chat")}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-slide-description">
-            Are you sure you want to delete this chat ?
+            {t("question_delete_chat")}
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose}>Yes</Button>
+          <Button onClick={handleClose}>{t("cancel")}</Button>
+          <Button onClick={handleClose}>{t("yes")}</Button>
         </DialogActions>
       </Dialog>
     </div>
@@ -95,6 +98,7 @@ const Contact = () => {
   const dispatch = useDispatch();
   const [openBlock, setOpenBlock] = React.useState(false);
   const [openDelete, setOpenDelete] = React.useState(false);
+  const { t } = useTranslation();
 
   const handleCloseBlock = () => {
     setOpenBlock(false);
@@ -127,7 +131,7 @@ const Contact = () => {
             justifyContent={"space-between"}
             spacing={3}
           >
-            <Typography variant="subtitle2">Contact Info</Typography>
+            <Typography variant="subtitle2">{t("contact_info")}</Typography>
             <IconButton
               onClick={() => {
                 dispatch(ToggleSidebar() as any);
@@ -172,18 +176,18 @@ const Contact = () => {
               <IconButton>
                 <Phone />
               </IconButton>
-              <Typography variant="overline">Voice</Typography>
+              <Typography variant="overline">{t("voice_call")}</Typography>
             </Stack>
             <Stack spacing={1} alignItems={"center"}>
               <IconButton>
                 <VideoCamera />
               </IconButton>
-              <Typography variant="overline">Video</Typography>
+              <Typography variant="overline">{t("video_call")}</Typography>
             </Stack>
           </Stack>
           <Divider />
           <Stack spacing={0.5}>
-            <Typography variant="body1">About</Typography>
+            <Typography variant="body1">{t("about")}</Typography>
             <Typography variant="body2">
               Imagination is the only limit
             </Typography>
@@ -194,7 +198,7 @@ const Contact = () => {
             alignItems={"center"}
             justifyContent={"space-between"}
           >
-            <Typography variant="subtitle2">Media, Links & Docks</Typography>
+            <Typography variant="subtitle2">{t("shared")}</Typography>
             <Button
               onClick={() => {
                 dispatch(UpdateSidebarType("SHARED") as any);
@@ -223,7 +227,9 @@ const Contact = () => {
           >
             <Stack direction={"row"} spacing={2} alignItems={"center"}>
               <Star size={21} />
-              <Typography variant="subtitle2">Starred Messages</Typography>
+              <Typography variant="subtitle2">
+                {t("starred_messages")}
+              </Typography>
             </Stack>
             <IconButton
               onClick={() => {
@@ -241,12 +247,14 @@ const Contact = () => {
           >
             <Stack direction={"row"} spacing={2} alignItems={"center"}>
               <Bell size={21} />
-              <Typography variant="subtitle2">Mute Notifications</Typography>
+              <Typography variant="subtitle2">
+                {t("mute_notifications")}
+              </Typography>
             </Stack>
             <AntSwitch />
           </Stack>
           <Divider />
-          <Typography>1 group in common</Typography>
+          <Typography>1 {t("group_in_common")}</Typography>
           <Stack direction={"row"} spacing={2} alignItems={"center"}>
             <Avatar src={randImg()} alt={randFirstName()} />
             <Stack spacing={0.5}>
@@ -265,7 +273,7 @@ const Contact = () => {
               fullWidth
               variant="outlined"
             >
-              Block
+              {t("block")}
             </Button>
             <Button
               onClick={() => {
@@ -275,7 +283,7 @@ const Contact = () => {
               fullWidth
               variant="outlined"
             >
-              Delete
+              {t("delete")}
             </Button>
           </Stack>
         </Stack>

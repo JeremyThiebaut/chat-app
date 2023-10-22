@@ -1,4 +1,4 @@
-import { Nav_Buttons, Profile_Menu } from "../../data";
+import { Nav_Buttons, Profile_Menu } from "@/data";
 import { randImg } from "@ngneat/falso";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
@@ -6,10 +6,10 @@ import Divider from "@mui/material/Divider";
 import Avatar from "@mui/material/Avatar";
 import { useTheme } from "@mui/material/styles";
 import { Gear } from "phosphor-react";
-import Logo from "../../assets/images/logo.ico";
+import Logo from "@/assets/images/logo.ico";
 import { useState } from "react";
 import { Menu, MenuItem, Stack } from "@mui/material";
-import AntSwitch from "../../components/AntSwitch";
+import AntSwitch from "@/components/AntSwitch";
 
 const SideBar = () => {
   const theme = useTheme();
@@ -130,7 +130,10 @@ const SideBar = () => {
           >
             <Stack spacing={1} px={1}>
               {Profile_Menu.map((item) => (
-                <MenuItem onClick={handleClick} key={item.title}>
+                <MenuItem
+                  // onClick={handleClick}
+                  key={item.title}
+                >
                   <Stack
                     sx={{ width: 100 }}
                     direction={"row"}

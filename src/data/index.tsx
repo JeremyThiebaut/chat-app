@@ -10,15 +10,15 @@ import { randFirstName, randImg, randText } from "@ngneat/falso";
 
 const Profile_Menu = [
   {
-    title: "Profile",
+    title: "profile",
     icon: <User />,
   },
   {
-    title: "Settings",
+    title: "settings",
     icon: <Gear />,
   },
   {
-    title: "Logout",
+    title: "logout",
     icon: <SignOut />,
   },
 ];
@@ -193,22 +193,22 @@ const Chat_History = [
 
 const Message_options = [
   {
-    title: "Reply",
+    title: "reply",
   },
   {
-    title: "React to message",
+    title: "react_message",
   },
   {
-    title: "Forward message",
+    title: "forward_message",
   },
   {
-    title: "Star message",
+    title: "star_message",
   },
   {
-    title: "Report",
+    title: "report",
   },
   {
-    title: "Delete Message",
+    title: "delete_message",
   },
 ];
 

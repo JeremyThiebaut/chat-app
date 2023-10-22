@@ -8,9 +8,9 @@ import {
 } from "@mui/material";
 import { randFirstName, randFullName, randImg } from "@ngneat/falso";
 import { CaretDown, MagnifyingGlass, Phone, VideoCamera } from "phosphor-react";
-import StyledBadge from "../StyledBadge";
+import StyledBadge from "@/components/StyledBadge";
 import { useDispatch } from "react-redux";
-import { ToggleSidebar } from "../../redux/slices/app";
+import { ToggleSidebar } from "@/redux/slices/app";
 
 const Header = () => {
   const dispatch = useDispatch();

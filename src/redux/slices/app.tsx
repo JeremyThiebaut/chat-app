@@ -1,8 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { dispatch } from "../store";
+import { dispatch } from "@/redux/store";
 
 const initialState = {
+  language: "fr",
   sidebar: {
     open: false,
     type: "CONTACT",

@@ -10,7 +10,7 @@ import {
   useTheme,
 } from "@mui/material";
 import { DotsThreeVertical, DownloadSimple, Image } from "phosphor-react";
-import { Message_options } from "../../data";
+import { Message_options } from "@/data";
 import { useState } from "react";
 
 type MessageType = {
@@ -24,19 +24,17 @@ type MessageType = {
 
 type TimelineProps = {
   item: MessageType;
+  menu?: boolean;
 };
 
-const DocMsg = (props: TimelineProps) => {
+const DocMsg = ({ item, menu }: TimelineProps) => {
   const theme = useTheme();
   return (
-    <Stack
-      direction={"row"}
-      justifyContent={props.item.incoming ? "start" : "end"}
-    >
+    <Stack direction={"row"} justifyContent={item.incoming ? "start" : "end"}>
       <Box
         p={1.5}
         sx={{
-          backgroundColor: props.item.incoming
+          backgroundColor: item.incoming
             ? theme.palette.background.default
             : theme.palette.primary.main,
           borderRadius: 1.5,
@@ -63,29 +61,26 @@ const DocMsg = (props: TimelineProps) => {
           <Typography
             variant="body2"
             sx={{
-              color: props.item.incoming ? theme.palette.text.primary : "#fff",
+              color: item.incoming ? theme.palette.text.primary : "#fff",
             }}
           >
-            {props.item.message}
+            {item.message}
           </Typography>
         </Stack>
       </Box>
-      <MessageOptions />
+      {menu && <MessageOptions />}
     </Stack>
   );
 };
 
-const LinkMsg = (props: TimelineProps) => {
+const LinkMsg = ({ item, menu }: TimelineProps) => {
   const theme = useTheme();
   return (
-    <Stack
-      direction={"row"}
-      justifyContent={props.item.incoming ? "start" : "end"}
-    >
+    <Stack direction={"row"} justifyContent={item.incoming ? "start" : "end"}>
       <Box
         p={1.5}
         sx={{
-          backgroundColor: props.item.incoming
+          backgroundColor: item.incoming
             ? theme.palette.background.default
             : theme.palette.primary.main,
           borderRadius: 1.5,
@@ -103,8 +98,8 @@ const LinkMsg = (props: TimelineProps) => {
             }}
           >
             <img
-              src={props.item.preview}
-              alt={props.item.message}
+              src={item.preview}
+              alt={item.message}
               style={{ maxHeight: 210, borderRadius: "10px" }}
             />
             <Stack spacing={2}>
@@ -120,29 +115,26 @@ const LinkMsg = (props: TimelineProps) => {
             </Stack>
             <Typography
               variant="body2"
-              color={props.item.incoming ? theme.palette.text.primary : "#fff"}
+              color={item.incoming ? theme.palette.text.primary : "#fff"}
             >
-              {props.item.message}
+              {item.message}
             </Typography>
           </Stack>
         </Stack>
       </Box>
-      <MessageOptions />
+      {menu && <MessageOptions />}
     </Stack>
   );
 };
 
-const ReplyMsg = (props: TimelineProps) => {
+const ReplyMsg = ({ item, menu }: TimelineProps) => {
   const theme = useTheme();
   return (
-    <Stack
-      direction={"row"}
-      justifyContent={props.item.incoming ? "start" : "end"}
-    >
+    <Stack direction={"row"} justifyContent={item.incoming ? "start" : "end"}>
       <Box
         p={1.5}
         sx={{
-          backgroundColor: props.item.incoming
+          backgroundColor: item.incoming
             ? theme.palette.background.default
             : theme.palette.primary.main,
           borderRadius: 1.5,
@@ -161,33 +153,30 @@ const ReplyMsg = (props: TimelineProps) => {
             }}
           >
             <Typography variant="body2" color={theme.palette.text.primary}>
-              {props.item.message}
+              {item.message}
             </Typography>
           </Stack>
           <Typography
             variant="body2"
-            color={props.item.incoming ? theme.palette.text.primary : "#fff"}
+            color={item.incoming ? theme.palette.text.primary : "#fff"}
           >
-            {props.item.reply}
+            {item.reply}
           </Typography>
         </Stack>
       </Box>
-      <MessageOptions />
+      {menu && <MessageOptions />}
     </Stack>
   );
 };
 
-const MediaMsg = (props: TimelineProps) => {
+const MediaMsg = ({ item, menu }: TimelineProps) => {
   const theme = useTheme();
   return (
-    <Stack
-      direction={"row"}
-      justifyContent={props.item.incoming ? "start" : "end"}
-    >
+    <Stack direction={"row"} justifyContent={item.incoming ? "start" : "end"}>
       <Box
         p={1.5}
         sx={{
-          backgroundColor: props.item.incoming
+          backgroundColor: item.incoming
             ? theme.palette.background.default
             : theme.palette.primary.main,
           borderRadius: 1.5,
@@ -196,34 +185,31 @@ const MediaMsg = (props: TimelineProps) => {
       >
         <Stack spacing={1}>
           <img
-            src={props.item.img}
-            alt={props.item.message}
+            src={item.img}
+            alt={item.message}
             style={{ maxHeight: 210, borderRadius: "10px" }}
           />
           <Typography
             variant="body2"
-            color={props.item.incoming ? theme.palette.text.primary : "#fff"}
+            color={item.incoming ? theme.palette.text.primary : "#fff"}
           >
-            {props.item.message}
+            {item.message}
           </Typography>
         </Stack>
       </Box>
-      <MessageOptions />
+      {menu && <MessageOptions />}
     </Stack>
   );
 };
 
-const TextMsg = (props: TimelineProps) => {
+const TextMsg = ({ item, menu }: TimelineProps) => {
   const theme = useTheme();
   return (
-    <Stack
-      direction={"row"}
-      justifyContent={props.item.incoming ? "start" : "end"}
-    >
+    <Stack direction={"row"} justifyContent={item.incoming ? "start" : "end"}>
       <Box
         p={1.5}
         sx={{
-          backgroundColor: props.item.incoming
+          backgroundColor: item.incoming
             ? theme.palette.background.default
             : theme.palette.primary.main,
           borderRadius: 1.5,
@@ -232,18 +218,18 @@ const TextMsg = (props: TimelineProps) => {
       >
         <Typography
           variant="body2"
-          color={props.item.incoming ? theme.palette.text.primary : "#fff"}
+          color={item.incoming ? theme.palette.text.primary : "#fff"}
         >
-          {props.item.message}
+          {item.message}
         </Typography>
       </Box>
       {/*  */}
-      <MessageOptions />
+      {menu && <MessageOptions />}
     </Stack>
   );
 };
 
-const Timeline = (props: TimelineProps) => {
+const Timeline = ({ item }: TimelineProps) => {
   const theme = useTheme();
   return (
     <Stack
@@ -253,7 +239,7 @@ const Timeline = (props: TimelineProps) => {
     >
       <Divider sx={{ width: "46%" }} />
       <Typography variant="caption" sx={{ color: theme.palette.text.primary }}>
-        {props.item.text}
+        {item.text}
       </Typography>
       <Divider sx={{ width: "46%" }} />
     </Stack>

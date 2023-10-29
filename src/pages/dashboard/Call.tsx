@@ -4,30 +4,10 @@ import {
   SearchIconWrapper,
   StyledInputBase,
 } from "@/components/Search";
-import { ChatList } from "@/data";
-import CreateGroup from "@/sections/main/CreateGroup";
-import {
-  Box,
-  Divider,
-  IconButton,
-  Link,
-  Stack,
-  Typography,
-  useTheme,
-} from "@mui/material";
+import { Box, Divider, IconButton, Stack, Typography } from "@mui/material";
 import { MagnifyingGlass, Plus } from "phosphor-react";
-import React from "react";
-import { useTranslation } from "react-i18next";
 
-const Group = () => {
-  const theme = useTheme();
-  const { t } = useTranslation();
-  const [openDialog, setOpenDialog] = React.useState(false);
-
-  const handleCloseDialog = () => {
-    setOpenDialog(false);
-  };
-
+const Call = () => {
   return (
     <>
       <Stack direction={"row"} sx={{ width: "100%" }}>
@@ -96,11 +76,8 @@ const Group = () => {
         {/* Right */}
         {/* // TODO => Reuse Conversation Component */}
       </Stack>
-      {openDialog && (
-        <CreateGroup open={openDialog} handleClose={handleCloseDialog} />
-      )}
     </>
   );
 };
 
-export default Group;
+export default Call;

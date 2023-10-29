@@ -20,6 +20,7 @@ import {
   Lock,
   Note,
   PencilCircle,
+  Translate,
 } from "phosphor-react";
 import { useTranslation } from "react-i18next";
 
@@ -74,6 +75,11 @@ const Settings = () => {
       title: "keyboard_shortcuts",
       // onClick: () => {},
       onClick: handleOpenShortcuts,
+    },
+    {
+      icon: <Translate size={20} />,
+      title: "language",
+      onClick: () => {},
     },
     {
       icon: <Info size={20} />,

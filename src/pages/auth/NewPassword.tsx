@@ -1,4 +1,4 @@
-import NewPasswordForm from "@/sections/settings/auth/NewPasswordForm";
+import NewPasswordForm from "@/sections/auth/NewPasswordForm";
 import { Link, Stack, Typography } from "@mui/material";
 import { CaretLeft } from "phosphor-react";
 import { Link as RouterLink } from "react-router-dom";

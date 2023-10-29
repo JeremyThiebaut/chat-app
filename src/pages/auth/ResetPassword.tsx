@@ -1,4 +1,4 @@
-import ResetPasswordForm from "@/sections/settings/auth/ResetPasswordForm";
+import ResetPasswordForm from "@/sections/auth/ResetPasswordForm";
 import { Link, Stack, Typography } from "@mui/material";
 import { CaretLeft } from "phosphor-react";
 import { Link as RouterLink } from "react-router-dom";

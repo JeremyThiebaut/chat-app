@@ -1,5 +1,5 @@
-import LoginForm from "@/sections/settings/auth/LoginForm";
-import AuthSocial from "@/sections/settings/auth/AuthSocial";
+import LoginForm from "@/sections/auth/LoginForm";
+import AuthSocial from "@/sections/auth/AuthSocial";
 import { Link, Stack, Typography } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
 import { useTranslation } from "react-i18next";

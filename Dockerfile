@@ -2,11 +2,12 @@
 FROM node:20-alpine
 
 # Créez un répertoire pour votre application
-RUN mkdir -p /app
+RUN mkdir -p /usr/src/app
 
 # Définissez le répertoire de travail pour votre application
-WORKDIR /app
+WORKDIR /usr/src/app
 
+# Copiez le package.json et le package-lock.json de votre application dans le conteneur
 COPY package*.json ./
 
 # Installez les dépendances de votre application
